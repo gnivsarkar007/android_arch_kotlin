@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.architecture.ext.getViewModel
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val intPref: IntPreference by inject("key_int_pref")
     private val apiInterface: ApiInterface by inject()
     private val apiKey: String by inject("apiKey")
+    val viewModel = getViewModel<MainActivityViewModel>()
     private lateinit var floatingButton: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             showSnackBar("Replace with your own action" + intPref.get())
         }
-
         apiInterface
                 .getBestSellerList(apiKey)
                 .subscribeOn(Schedulers.newThread())
