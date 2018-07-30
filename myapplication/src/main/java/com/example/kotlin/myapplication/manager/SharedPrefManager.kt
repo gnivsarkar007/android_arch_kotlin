@@ -3,7 +3,7 @@ package com.example.kotlin.myapplication.manager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.example.kotlin.myapplication.SingletonHolder
+import com.example.kotlin.myapplication.utils.SingletonHolder
 
 class SharedPrefManager private constructor(context: Context) {
     var prefsManager : SharedPreferences;

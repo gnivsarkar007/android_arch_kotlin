@@ -1,11 +1,12 @@
-package com.example.kotlin.myapplication
+package com.example.kotlin.myapplication.utils
 
-open class SingletonHolder<in C, out S>(creator: (C) -> S) {
-    private var creator: ((C) -> S)? = creator
+open class SingletonHolder<in I, out O>(creator: (I) -> O) {
+    private var creator: ((I) -> O)? = creator
 
-    @Volatile private var instance: S? = null
+    @Volatile
+    private var instance: O? = null
 
-    fun getInstance(arg: C): S {
+    fun getInstance(arg: I): O {
         val i = instance
         if (i != null) {
             return i
