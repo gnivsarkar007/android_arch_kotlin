@@ -1,4 +1,4 @@
-package com.example.kotlin.myapplication
+package com.example.kotlin.myapplication.ui
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

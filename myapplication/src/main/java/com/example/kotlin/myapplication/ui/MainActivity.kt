@@ -1,4 +1,4 @@
-package com.example.kotlin.myapplication
+package com.example.kotlin.myapplication.ui
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.example.kotlin.myapplication.R
 import com.example.kotlin.myapplication.api.model.ResultsItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.architecture.ext.viewModel

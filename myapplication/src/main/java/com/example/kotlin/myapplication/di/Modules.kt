@@ -1,7 +1,5 @@
 package com.example.kotlin.myapplication.di
 
-import com.example.kotlin.myapplication.BestSellerAdapter
-import com.example.kotlin.myapplication.MainActivityViewModel
 import com.example.kotlin.myapplication.R
 import com.example.kotlin.myapplication.api.ApiInterface
 import com.example.kotlin.myapplication.api.model.ResultsItem
@@ -13,6 +11,8 @@ import com.example.kotlin.myapplication.repository.IRemoteStorage
 import com.example.kotlin.myapplication.repository.IRepository
 import com.example.kotlin.myapplication.scheduler.AppSchedulerProvider
 import com.example.kotlin.myapplication.scheduler.RxSchedulerProvider
+import com.example.kotlin.myapplication.ui.BestSellerAdapter
+import com.example.kotlin.myapplication.ui.MainActivityViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module.applicationContext
 
