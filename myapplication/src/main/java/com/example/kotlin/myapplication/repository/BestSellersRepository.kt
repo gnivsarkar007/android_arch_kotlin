@@ -1,15 +1,17 @@
 package com.example.kotlin.myapplication.repository
 
-import com.example.kotlin.myapplication.api.model.ResultsItem
-import io.reactivex.Observable
+import android.arch.lifecycle.LiveData
+import com.example.kotlin.myapplication.api.model.Response
 
-class BestSellersRepository(private val localStorage: ILocalStorage<ResultsItem>?,
-                            private val remoteStorage: IRemoteStorage<ResultsItem>) : IRepository<ResultsItem> {
-    override fun get(): Observable<List<ResultsItem>> {
+class BestSellersRepository(private val localStorage: ILocalStorage<Response>?,
+                            private val remoteStorage: IRemoteStorage<Response>) : IRepository<Response> {
+
+
+    override fun get(): LiveData<Response> {
         return remoteStorage.get()
     }
 
-    override fun set(data: List<ResultsItem>) {
+    override fun set(data: List<Response>) {
     }
 
 }

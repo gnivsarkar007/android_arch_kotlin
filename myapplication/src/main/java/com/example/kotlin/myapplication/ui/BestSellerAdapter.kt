@@ -11,18 +11,20 @@ import com.example.kotlin.myapplication.api.model.ResultsItem
 
 class BestSellerAdapter(private val context: Context, private var dataList: List<ResultsItem>) :
         RecyclerView.Adapter<BestSellerAdapter.BestSellerVH>() {
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BestSellerVH {
+    override fun onCreateViewHolder(parent: ViewGroup, position: Int): BestSellerVH {
         return BestSellerVH(LayoutInflater.from(context)
                 .inflate(R.layout.best_seller_layout, parent, false))
     }
+
+    override fun onBindViewHolder(holder: BestSellerVH, position: Int) {
+        holder.title.text = dataList[position].title
+    }
+
 
     override fun getItemCount(): Int {
         return dataList.size
     }
 
-    override fun onBindViewHolder(holder: BestSellerVH?, position: Int) {
-        holder?.title?.text = dataList[position].title
-    }
 
     fun refreshData(newData: List<ResultsItem>) {
         dataList = newData

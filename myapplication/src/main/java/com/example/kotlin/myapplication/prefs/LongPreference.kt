@@ -13,6 +13,6 @@ class LongPreference(private var data: Long, private var key: String,
     }
 
     override fun get(): Long {
-        return sharedPrefManager.prefsManager.getLong(this.key, -1L)
+        return data
     }
 }
