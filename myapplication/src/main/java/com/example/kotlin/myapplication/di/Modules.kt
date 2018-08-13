@@ -22,7 +22,7 @@ val AppModule = applicationContext {
     bean { ApiInterface.Factory.create() }
     bean("apiKey") { androidApplication().applicationContext.resources.getString(R.string.api_key) }
     factory { AppSchedulerProvider() as RxSchedulerProvider }
-    factory { MainActivityViewModel(androidApplication(), repository = get(), schedulerProvider = get()) }
+  factory { MainActivityViewModel(androidApplication(), repository = get()) }
     factory {
         BestSellerRemoteStorage(apiInterface = get(), rxScheduler = get(), apiKey = get("apiKey"))
                 as IRemoteStorage<Response>

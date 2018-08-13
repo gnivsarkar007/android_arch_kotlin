@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.example.kotlin.myapplication.R
 import com.example.kotlin.myapplication.api.model.Response
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.content_main.fab
+import kotlinx.android.synthetic.main.content_main.recycler
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity(), Observer<Response> {
 
     val viewModel: MainActivityViewModel by viewModel()
     val adapter: BestSellerAdapter by inject { mapOf("activity" to this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity(), Observer<Response> {
     }
 
     override fun onChanged(resultData: Response?) {
-        adapter.refreshData(resultData!!.results!!)
+        adapter.refreshData(resultData?.results!!)
     }
 
     private fun showSnackBar(message: String) {

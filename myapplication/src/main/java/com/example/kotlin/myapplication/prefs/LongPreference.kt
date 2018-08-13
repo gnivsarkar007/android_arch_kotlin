@@ -2,8 +2,8 @@ package com.example.kotlin.myapplication.prefs
 
 import com.example.kotlin.myapplication.manager.SharedPrefManager
 
-class LongPreference(private var data: Long, private var key: String,
-                     private var sharedPrefManager: SharedPrefManager) : IPreference<Long> {
+data class LongPreference(private var data: Long, private var key: String,
+                          private var sharedPrefManager: SharedPrefManager) : IPreference<Long> {
     init {
         set(data)
     }

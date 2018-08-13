@@ -17,7 +17,10 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
     }
 
     override fun onBindViewHolder(holder: BestSellerVH, position: Int) {
-        holder.title.text = dataList[position].title
+        val result = dataList[position]
+        holder.title.text = result.title
+        holder.author.text = result.author
+        holder.publisher.text = result.publisher
     }
 
 
@@ -25,13 +28,14 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
         return dataList.size
     }
 
-
-    fun refreshData(newData: List<ResultsItem>) {
-        dataList = newData
+    fun refreshData(newData: List<ResultsItem>?) {
+        dataList = newData ?: listOf()
         notifyDataSetChanged()
     }
 
-    data class BestSellerVH(private val view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.title)
+    class BestSellerVH(view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = view.findViewById(R.id.title)
+        val author: TextView = view.findViewById(R.id.author)
+        val publisher: TextView = view.findViewById(R.id.publisher)
     }
 }
