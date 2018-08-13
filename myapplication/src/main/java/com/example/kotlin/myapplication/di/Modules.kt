@@ -24,7 +24,7 @@ val AppModule = applicationContext {
     factory { AppSchedulerProvider() as RxSchedulerProvider }
     factory { MainActivityViewModel(androidApplication(), repository = get(), schedulerProvider = get()) }
     factory {
-        BestSellerRemoteStorage(apiInterface = get(), rxScheduler = get(), apiKey = get("apiKey"))
+        BestSellerRemoteStorage(apiInterface = get(), apiKey = get("apiKey"))
                 as IRemoteStorage<Response>
     }
     factory { BestSellersRepository(null, get()) as IRepository<Response> }
