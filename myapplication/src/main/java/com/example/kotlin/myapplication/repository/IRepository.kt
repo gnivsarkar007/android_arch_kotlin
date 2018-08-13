@@ -1,8 +1,8 @@
 package com.example.kotlin.myapplication.repository
 
-import android.arch.lifecycle.LiveData
+import io.reactivex.Observable
 
 interface IRepository<T> {
-    fun get(): LiveData<T>
+    fun get(): Observable<T>
     fun set(data: List<T>)
 }
