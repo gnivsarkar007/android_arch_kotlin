@@ -2,8 +2,8 @@ package com.example.kotlin.myapplication.prefs
 
 import com.example.kotlin.myapplication.manager.SharedPrefManager
 
-class FloatPreference(private var data: Float, private var key: String,
-                      private var sharedPrefManager: SharedPrefManager) : IPreference<Float> {
+data class FloatPreference(private var data: Float, private var key: String,
+                           private var sharedPrefManager: SharedPrefManager) : IPreference<Float> {
     init {
         set(data)
     }
