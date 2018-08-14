@@ -1,4 +1,4 @@
-package com.example.kotlin.myapplication.repository
+package com.example.kotlin.myapplication.repository.base
 
 import io.reactivex.Observable
 import io.reactivex.Single

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
 
@@ -39,11 +40,10 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-architecture:$koin_version"
     implementation "android.arch.lifecycle:extensions:$arch_comps_version"
-    annotationProcessor "android.arch.lifecycle:compiler:$arch_comps_version"
+    kapt "android.arch.lifecycle:compiler:$arch_comps_version"
     implementation "android.arch.lifecycle:reactivestreams:$arch_comps_version"
     implementation "android.arch.persistence.room:runtime:$arch_comps_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$arch_comps_version" // use kapt for Kotlin
-
+    kapt "android.arch.persistence.room:compiler:$arch_comps_version" // use kapt for Kotlin
 }
 
 apply plugin: 'kotlin-android'
