@@ -17,10 +17,7 @@ class BestSellersRepository(
 
     override fun get(): Observable<List<BestSellerViewModel>> {
         return localStorage!!.get()
-//        remoteStorage!!.get()
-//            .doOnNext { it.map { BestSellerEntity.entityFromViewModel(it) }.forEach { set(it) } }
-//            .doOnNext { set(it) }
-//            .switchMap { localStorage?.get() }
+
 
     }
 
