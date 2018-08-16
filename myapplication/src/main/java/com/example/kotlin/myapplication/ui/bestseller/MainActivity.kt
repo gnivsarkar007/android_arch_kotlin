@@ -10,8 +10,10 @@ import com.example.kotlin.myapplication.R
 import com.example.kotlin.myapplication.domain.ViewState
 import com.example.kotlin.myapplication.ui.bestseller.viewmodel.BestSellerViewModel
 import com.example.kotlin.myapplication.utils.Constants
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.content_main.fab
+import kotlinx.android.synthetic.main.content_main.progress
+import kotlinx.android.synthetic.main.content_main.recycler
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity(), Observer<ViewState<List<BestSellerView
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+      fab.setOnClickListener { _ ->
             showSnackBar("Replace with your own action$viewModel")
         }
         recycler.layoutManager = LinearLayoutManager(this)
@@ -39,8 +41,8 @@ class MainActivity : AppCompatActivity(), Observer<ViewState<List<BestSellerView
             Constants.STATE_FAILURE, Constants.STATE_SUCCESS -> {
                 showLoading(false)
                 when {
-                    resultData.data != null -> adapter.refreshData(resultData.data!!)
-                    resultData.error != null -> showSnackBar(resultData.error?.message!!)
+                  resultData.data != null -> adapter.refreshData(resultData.data)
+                  else -> showSnackBar(resultData.error?.message.orEmpty())
                 }
             }
         }

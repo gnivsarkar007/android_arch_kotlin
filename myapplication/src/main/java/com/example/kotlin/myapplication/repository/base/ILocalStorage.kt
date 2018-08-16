@@ -1,8 +1,6 @@
 package com.example.kotlin.myapplication.repository.base
 
-import io.reactivex.Observable
-
-interface ILocalStorage<T> {
-    fun get(): Observable<T>
-    fun set(data: List<T>)
+interface ILocalStorage<in E, out VM> {
+  fun get(): VM
+  fun set(vararg data: E)
 }

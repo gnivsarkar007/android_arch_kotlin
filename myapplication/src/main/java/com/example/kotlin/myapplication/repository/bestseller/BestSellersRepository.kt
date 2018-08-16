@@ -1,6 +1,5 @@
 package com.example.kotlin.myapplication.repository.bestseller
 
-import com.example.kotlin.myapplication.domain.ViewState
 import com.example.kotlin.myapplication.repository.base.ILocalStorage
 import com.example.kotlin.myapplication.repository.base.IRemoteStorage
 import com.example.kotlin.myapplication.repository.base.IRepository
@@ -8,19 +7,21 @@ import com.example.kotlin.myapplication.ui.bestseller.viewmodel.BestSellerViewMo
 import io.reactivex.Observable
 
 class BestSellersRepository(
-    private val localStorage: ILocalStorage<ViewState<List<BestSellerViewModel>>>?,
-    private val remoteStorage: IRemoteStorage<ViewState<List<BestSellerViewModel>>>?
-) : IRepository<ViewState<List<BestSellerViewModel>>> {
-
-
-    override fun get(): Observable<ViewState<List<BestSellerViewModel>>> {
-        return remoteStorage!!.get()
-            .doOnNext({ data: ViewState<List<BestSellerViewModel>>? -> localStorage?.set(listOf(data).requireNoNulls()) })
-            .mergeWith(localStorage?.get())
-
+    private val localStorage: ILocalStorage<BestSellerEntity, Observable<List<BestSellerViewModel>>>?,
+    private val remoteStorage: IRemoteStorage<List<BestSellerEntity>, Observable<List<BestSellerViewModel>>>?
+) : IRepository<BestSellerEntity, Observable<List<BestSellerViewModel>>> {
+    override fun set(vararg data: BestSellerEntity) {
+        // possibly write to local storage?
+        localStorage?.set(*data)
     }
 
-    override fun set(data: List<ViewState<List<BestSellerViewModel>>>) {
+    override fun get(): Observable<List<BestSellerViewModel>> {
+        return localStorage!!.get()
+//        remoteStorage!!.get()
+//            .doOnNext { it.map { BestSellerEntity.entityFromViewModel(it) }.forEach { set(it) } }
+//            .doOnNext { set(it) }
+//            .switchMap { localStorage?.get() }
+
     }
 
 }

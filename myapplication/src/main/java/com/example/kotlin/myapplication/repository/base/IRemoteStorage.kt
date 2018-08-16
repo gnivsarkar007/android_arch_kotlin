@@ -1,10 +1,6 @@
 package com.example.kotlin.myapplication.repository.base
 
-import io.reactivex.Observable
-import io.reactivex.Single
-
-interface IRemoteStorage<T> {
-    fun get(): Observable<T>
-    fun getSingle(): Single<T>
-    fun set(data: List<T>)
+interface IRemoteStorage<in E, out VM> {
+  fun get(): VM
+  fun set(vararg data: E)
 }

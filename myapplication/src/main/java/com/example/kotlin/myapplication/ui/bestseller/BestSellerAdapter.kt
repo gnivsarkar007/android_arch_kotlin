@@ -22,7 +22,6 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
     override fun onBindViewHolder(holder: BestSellerVH, position: Int) {
         val result = dataList[position]
         holder.bindData(result)
-
     }
 
 
