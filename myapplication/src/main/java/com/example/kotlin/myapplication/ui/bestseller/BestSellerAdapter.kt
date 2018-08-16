@@ -1,4 +1,4 @@
-package com.example.kotlin.myapplication.ui
+package com.example.kotlin.myapplication.ui.bestseller
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,19 +8,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.kotlin.myapplication.R
-import com.example.kotlin.myapplication.api.model.ResultsItem
+import com.example.kotlin.myapplication.ui.bestseller.viewmodel.BestSellerViewModel
 
-class BestSellerAdapter(private val context: Context, private var dataList: List<ResultsItem>) :
+class BestSellerAdapter(private val context: Context, private var dataList: List<BestSellerViewModel>) :
         RecyclerView.Adapter<BestSellerAdapter.BestSellerVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): BestSellerVH {
-        return BestSellerVH(LayoutInflater.from(context)
-                .inflate(R.layout.best_seller_layout, parent, false))
+        return BestSellerVH(
+            LayoutInflater.from(context)
+                .inflate(R.layout.best_seller_layout, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: BestSellerVH, position: Int) {
         val result = dataList[position]
         holder.bindData(result)
-
     }
 
 
@@ -28,7 +29,7 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
         return dataList.size
     }
 
-    fun refreshData(newData: List<ResultsItem>?) {
+    fun refreshData(newData: List<BestSellerViewModel>?) {
         dataList = newData ?: listOf()
         notifyDataSetChanged()
     }
@@ -39,8 +40,8 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
       private val publisher: TextView = view.findViewById(R.id.publisher)
       private val rankStatus: ImageView = view.findViewById(R.id.rank)
 
-      fun bindData(result: ResultsItem) {
-        title.text = result.title
+        fun bindData(result: BestSellerViewModel) {
+            title.text = result.title
         author.text = result.author
         publisher.text = result.publisher
         rankStatus.visibility = View.INVISIBLE
