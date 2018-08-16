@@ -8,8 +8,8 @@ import com.example.kotlin.myapplication.database.bestseller.BestSellerDao
 import com.example.kotlin.myapplication.repository.bestseller.BestSellerEntity
 
 @Database(
-    entities = arrayOf(BestSellerEntity::class),
-    version = 2
+        entities = arrayOf(BestSellerEntity::class),
+        version = 5
 )
 abstract class DBHelper : RoomDatabase() {
     abstract fun bestSellerDao(): BestSellerDao

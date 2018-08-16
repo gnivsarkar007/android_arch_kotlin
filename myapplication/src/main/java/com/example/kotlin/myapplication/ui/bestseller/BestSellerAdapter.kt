@@ -41,7 +41,7 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
       private val rankStatus: ImageView = view.findViewById(R.id.rank)
 
         fun bindData(result: BestSellerViewModel) {
-        title.text = result.title
+            title.text = result.title
         author.text = result.author
         publisher.text = result.publisher
         rankStatus.visibility = View.INVISIBLE

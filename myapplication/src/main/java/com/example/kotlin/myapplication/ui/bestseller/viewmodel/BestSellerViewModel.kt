@@ -18,7 +18,7 @@ data class BestSellerViewModel(
         }
 
       fun viewModelFromEntity(entity: BestSellerEntity): BestSellerViewModel {
-        return BestSellerViewModel(entity.title, entity.author, entity.publisher)
+          return BestSellerViewModel(entity.title, entity.author, entity.publisher)
       }
     }
 
