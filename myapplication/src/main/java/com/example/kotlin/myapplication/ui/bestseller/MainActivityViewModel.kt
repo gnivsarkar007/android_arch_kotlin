@@ -18,31 +18,29 @@ class MainActivityViewModel(
     private val schedulerProvider: RxSchedulerProvider
 ) : AndroidViewModel(application) {
 
-
     internal var resultsListLiveData = MutableLiveData<ViewState<List<BestSellerViewModel>>>()
-    private var responseViewState = ViewState<List<BestSellerViewModel>>(null,
-        null,
-        Constants.STATE_LOADING)
+
     fun doStuff() {
         repository
                 .get()
                 .subscribeOn(schedulerProvider.newThread())
                 .observeOn(schedulerProvider.mainThread())
-            .doOnSubscribe {
-                resultsListLiveData.value = responseViewState; Log.d("TAG", "Subscribed")
-            }
+                .doOnSubscribe {
+                    resultsListLiveData.value = ViewState(null,
+                                                          null,
+                                                          Constants.STATE_LOADING)
+                    Log.d("TAG", "Subscribed")
+                }
                 .doOnComplete { Log.d("TAG", "Completed") }
                 .subscribe({ setSuccessObject(it) }, { setErrorObject(it) })
     }
 
     private fun setSuccessObject(responseList: List<BestSellerViewModel>) {
-        this.responseViewState = ViewState(responseList, null, Constants.STATE_SUCCESS)
-        this.resultsListLiveData.value = this.responseViewState
+        this.resultsListLiveData.value = ViewState(responseList, null, Constants.STATE_SUCCESS)
     }
 
     private fun setErrorObject(error: Throwable) {
-        this.responseViewState = ViewState(null, error, Constants.STATE_FAILURE)
-        this.resultsListLiveData.value = this.responseViewState
+        this.resultsListLiveData.value = ViewState(null, error, Constants.STATE_FAILURE)
     }
 
 }

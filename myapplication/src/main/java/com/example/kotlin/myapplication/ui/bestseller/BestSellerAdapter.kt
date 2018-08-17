@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.example.kotlin.myapplication.R
 import com.example.kotlin.myapplication.ui.bestseller.viewmodel.BestSellerViewModel
 
-class BestSellerAdapter(private val context: Context, private var dataList: List<BestSellerViewModel>) :
+class BestSellerAdapter(private val context: Context, private var dataList: MutableList<BestSellerViewModel>) :
         RecyclerView.Adapter<BestSellerAdapter.BestSellerVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): BestSellerVH {
         return BestSellerVH(
@@ -30,7 +30,8 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
     }
 
     fun refreshData(newData: List<BestSellerViewModel>?) {
-        dataList = newData ?: listOf()
+        newData?.let { dataList.addAll(newData) } ?: dataList.addAll(mutableListOf())
+//        dataList.addAll(newData ?: mutableListOf())
         notifyDataSetChanged()
     }
 
@@ -42,18 +43,9 @@ class BestSellerAdapter(private val context: Context, private var dataList: List
 
         fun bindData(result: BestSellerViewModel) {
             title.text = result.title
-        author.text = result.author
-        publisher.text = result.publisher
-        rankStatus.visibility = View.INVISIBLE
-//            val currRank = result.ranksHistory!![0].rank
-//            val lastRank = result.ranksHistory[1].rank
-//
-//            when {
-//              lastRank == null || currRank == null -> rankStatus.visibility = View.INVISIBLE
-//              currRank - lastRank < 0 -> rankStatus.setImageResource(R.drawable.ic_arrow_upward_black_24dp)
-//              currRank - lastRank > 0 -> rankStatus.setImageResource(R.drawable.ic_arrow_downward_black_24dp)
-//              else ->
-//            }
+            author.text = result.author
+            publisher.text = result.publisher
+            rankStatus.visibility = View.INVISIBLE
       }
     }
 }

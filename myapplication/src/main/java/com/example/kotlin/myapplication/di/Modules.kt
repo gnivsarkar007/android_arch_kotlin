@@ -54,8 +54,8 @@ val AppModule = applicationContext {
   }
     factory { parameterProvider ->
         BestSellerAdapter(
-            parameterProvider["activity"],
-            listOf()
+                parameterProvider["activity"],
+                mutableListOf()
         )
     }
 }

@@ -1,5 +1,6 @@
 <resources>
   <string name="app_name">KotlinArchComps</string>
     <string name="api_key">94bc4b841e8143fb8c9c7d5f4455d8ce</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Best Sellers List</string>
+    <string name="title_movie_reviews">Movie Reviews</string>
 </resources>
