@@ -19,7 +19,7 @@ class MainActivityViewModel(
 ) : AndroidViewModel(application) {
 
     internal var resultsListLiveData = MutableLiveData<ViewState<List<BestSellerViewModel>>>()
-
+    internal var currentState: Int = Constants.STATE_LOADING
     fun doStuff() {
         repository
                 .get()
@@ -35,12 +35,14 @@ class MainActivityViewModel(
                 .subscribe({ setSuccessObject(it) }, { setErrorObject(it) })
     }
 
-    private fun setSuccessObject(responseList: List<BestSellerViewModel>) {
-        this.resultsListLiveData.value = ViewState(responseList, null, Constants.STATE_SUCCESS)
+    private fun setSuccessObject(responseList: List<BestSellerViewModel>?) {
+        currentState = Constants.STATE_SUCCESS
+        this.resultsListLiveData.value = ViewState(responseList, null, currentState)
     }
 
     private fun setErrorObject(error: Throwable) {
-        this.resultsListLiveData.value = ViewState(null, error, Constants.STATE_FAILURE)
+        currentState = Constants.STATE_FAILURE
+        this.resultsListLiveData.value = ViewState(null, error, currentState)
     }
 
 }

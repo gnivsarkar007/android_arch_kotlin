@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), Observer<ViewState<List<BestSellerView
         setSupportActionBar(toolbar)
 
       fab.setOnClickListener { _ ->
-            showSnackBar("Replace with your own action$viewModel")
+          retry()
         }
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), Observer<ViewState<List<BestSellerView
     }
 
     override fun onChanged(resultData: ViewState<List<BestSellerViewModel>>?) {
-        when (resultData!!.state) {
+        when (resultData?.let { resultData.state }) {
             Constants.STATE_LOADING -> showLoading(true)
             Constants.STATE_FAILURE, Constants.STATE_SUCCESS -> {
                 showLoading(false)
@@ -47,6 +47,12 @@ class MainActivity : AppCompatActivity(), Observer<ViewState<List<BestSellerView
             }
         }
 
+    }
+
+    private fun retry() {
+        if (viewModel.currentState == Constants.STATE_FAILURE) {
+            viewModel.doStuff()
+        }
     }
 
     private fun showLoading(show: Boolean) {

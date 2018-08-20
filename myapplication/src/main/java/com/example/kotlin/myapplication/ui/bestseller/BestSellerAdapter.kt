@@ -31,7 +31,6 @@ class BestSellerAdapter(private val context: Context, private var dataList: Muta
 
     fun refreshData(newData: List<BestSellerViewModel>?) {
         newData?.let { dataList.addAll(newData) } ?: dataList.addAll(mutableListOf())
-//        dataList.addAll(newData ?: mutableListOf())
         notifyDataSetChanged()
     }
 
